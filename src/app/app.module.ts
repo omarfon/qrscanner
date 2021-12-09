@@ -9,21 +9,39 @@ import { NotifierModule } from 'angular-notifier';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { HomeComponent } from './components/home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './components/login/login.component';
+import { PushNotificationService } from './services/push-notification.service';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    AdmisionComponent
+    AdmisionComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AppRoutingModule,
     NgQrScannerModule,
     NotifierModule,
     BrowserAnimationsModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule,
+    AngularFirestoreModule,
+    AngularFireMessagingModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [PushNotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

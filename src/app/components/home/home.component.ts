@@ -75,7 +75,9 @@ export class HomeComponent implements OnInit {
       this.resultSearch = data;
       console.log(this.resultSearch);
       this.loader = false;
-      this.saveData();
+      if(this.resultSearch){
+        this.saveData();
+      }
     }, err => {
       console.log(err);
       this.resultSearch = err.error;
@@ -90,15 +92,15 @@ export class HomeComponent implements OnInit {
 
   saveData(){
     let data = {
-      nombreUsu:this.resultSearch.patientFullname,
-      patientId: this.resultSearch.patientId,
-      dateCita: this.resultSearch.appointmentDateTime,
-      appointmentId:this.resultSearch.appointmentId,
+      nombreUsu:this.resultSearch.PATIENTFULLNAME,
+      patientId: this.resultSearch.PATIENTID,
+      dateCita: this.resultSearch.FECHA,
+      appointmentId:this.resultSearch.APPOINTMENTID,
       result: this.resultSearch.result,
-      especialista:this.resultSearch.professionalFullname,
-      especialidad:this.resultSearch.basicServiceDescription,
-      bloque:'cura',
-      consultorio:120,
+      especialista:this.resultSearch.PROFESSIONALFULLNAME,
+      especialidad:this.resultSearch.BASICSERVICEDESCRIPTION,
+      bloque:this.resultSearch.BLOCK,
+      consultorio:this.resultSearch.ROOMNAME,
       activity: false,
       llegada: false
     }

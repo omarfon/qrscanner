@@ -12,7 +12,8 @@ export const environment = {
     messagingSenderId: "621272075990",
     appId: "1:621272075990:web:23fca6230f3ece9e290377",
     measurementId: "${config.measurementId}"
-  }
+  },
+  gcm_sender_id: "103953800507"
 };
 
 /*

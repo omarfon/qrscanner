@@ -23,16 +23,12 @@ export class AdmisionComponent implements OnInit {
 
   constructor(public saveDataSrv: SaveDataService, 
               public pushNotificacion: PushNotificationService) { 
-    pushNotificacion.requestPermission().then(token =>{
-      console.log(token)
-    })
+
   }
 
   ngOnInit(): void {
     this.getAllReservas();
-    this.pushNotificacion.receiveMessage().subscribe(payload => {
-      console.log(payload);
-    })
+
   }
 
   getAllReservas(){

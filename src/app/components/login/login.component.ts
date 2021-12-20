@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SaveDataService } from '../../services/save-data.service';
 
 
 @Component({
@@ -8,14 +9,50 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(public router: Router) { }
+  public email;
+  public password;
+  public dataLoginSuccess;
+  constructor(public router: Router, public savedataSrv: SaveDataService) { }
 
   ngOnInit(): void {
+    this.getPublicKey();
   }
 
-  goToHome(){
-    this.router.navigate(['home']);
+  getPublicKey() {
+    this.savedataSrv.getKey().subscribe((data: any) => {
+      console.log('data', data);
+      const keypublic = data.authorization;
+      const role = data.role;
+      if (keypublic) {
+        localStorage.setItem('authorization', keypublic);
+        localStorage.setItem('role', role);
+      }
+    });
+  }
+
+  login() {
+    let email = this.email;
+    let password = this.password;
+    this.savedataSrv.login(email, password).subscribe(data => {
+      this.dataLoginSuccess = data;
+      if (this.dataLoginSuccess) {
+        localStorage.setItem('dataDoctor', JSON.stringify(this.dataLoginSuccess));
+        localStorage.setItem('authorization', this.dataLoginSuccess.authorization);
+        localStorage.setItem('role', data.role);
+        this.router.navigate(['/admision']);
+      }
+    }, err => {
+      let data = err;
+      console.log('data error:', data);
+      /* this.dialog.open(ErrologinComponent, { data }) */
+      console.log('err', err);
+    });
+  }
+
+
+  goToPatient(){
+    localStorage.setItem('role', 'patient');
+      this.router.navigate(['home']);
   }
 
 }

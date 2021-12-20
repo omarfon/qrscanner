@@ -2,13 +2,10 @@
   <!-- Toolbar -->
   <div class="toolbar" role="banner">
     <span>Bienvenido a Aviva</span>
-    <div class="spacer"></div>
   </div>
+  <p class="textoEntrada" *ngIf="visible == true">Pon frente a la pantalla el código QR que se generó en la reserva de tu cita</p>
 
   <div class="content" role="main" *ngIf="visible == true">
-    <div>
-      <h4>scanea tu QR</h4>
-    </div>
     <input type="hidden" #selection>
     <div class="terminal" [ngSwitch]="selection.value">
       <pre *ngSwitchDefault><div>
@@ -19,8 +16,7 @@
                     [stopAfterScan]="true"
                     [updateTime]="500"> 
                   </qr-scanner>
-                </div>
-              </pre>
+        </div></pre>
     </div>
   </div>
   <div class="containerLoader">
@@ -32,9 +28,34 @@
 
   <div class="containerMessage">
     <div *ngIf="visible == false" class="center">
-      <p *ngIf="resultSearch.result == 'ok'" class="dataPaciente">Bienvenido {{resultSearch.PATIENTFULLNAME}}, hoy tiene una consulta {{resultSearch.BASICSERVICEDESCRIPTION}} , con el doctor {{resultSearch.PROFESSIONALFULLNAME}}, dirigete a Pre-consulta.</p>
+      <div class="row">
+        <div *ngIf="resultSearch.result == 'ok' &&  resultSearch.PRECONSULTA == true" class="dataPaciente">
+          <div class="row">
+            <div class="col-4 left">Paciente:</div>
+            <div class="col-8 bold">{{resultSearch.PATIENTFULLNAME}}</div>
+            <div class="col-4 left">Especialidad:</div>
+            <div class="col-8 bold">{{resultSearch.BASICSERVICEDESCRIPTION}}</div>
+            <div class="col-4 left">Especialista:</div>
+            <div class="col-8 bold">{{resultSearch.PROFESSIONALFULLNAME}}</div>
+            <div class="col-4 left">Dirigete a: </div>
+            <div class="col-8 bold" *ngIf="resultSearch.BLOCK == 'CURA'">Pre consulta en el 2do piso bloque cura</div>
+            <div class="col-8 bold big" *ngIf="resultSearch.BLOCK == 'CUIDA'">Pre consulta en el 2do piso bloque cuida</div>
+          </div>
+        </div>
+        <div *ngIf="resultSearch.result == 'ok' &&  resultSearch.PRECONSULTA == false" class="dataPaciente">
+          <div class="row">
+            <div class="col-4 left">Paciente:</div>
+            <div class="col-8 bold">{{resultSearch.PATIENTFULLNAME}}</div>
+            <div class="col-4 left">Especialidad:</div>
+            <div class="col-8 bold">{{resultSearch.BASICSERVICEDESCRIPTION}}</div>
+            <div class="col-4 left">Especialista:</div>
+            <div class="col-8 bold">{{resultSearch.PROFESSIONALFULLNAME}}</div>
+            <div class="col-4 left">Dirigete a:</div>
+            <div class="col-8 bold big">{{resultSearch.ROOMNAME}}</div>
+          </div>
+        </div>
+      </div>
       <p *ngIf="resultSearch.result == 'error'">Por favor dirigete a admisión</p>
     </div>
   </div>
-
 </div>

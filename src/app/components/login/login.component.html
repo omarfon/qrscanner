@@ -6,17 +6,20 @@
                 <div class="col-12 ">
                     <div class="form-control-group">
                         <label for="">Ingresa tu Email</label>
-                        <input type="text" class="form-control" placeholder="Correo">
+                        <input type="text" class="form-control" placeholder="Correo" name="email" [(ngModel)]="email">
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="form-control-group">
                         <label for="">Ingresa tu Password</label>
-                        <input type="password" class="form-control" placeholder="contraseña">
+                        <input type="password" class="form-control" placeholder="contraseña" [(ngModel)]="password">
                     </div>
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-primary btn-block" (click)="goToHome()">LOGIN</button>
+                    <button class="btn btn-primary btn-block" (click)="login()">LOGIN</button>
+                </div>
+                <div class="col-12">
+                    <a (click)="goToPatient()" class="paciente center">Ingresar como paciente</a>
                 </div>
             </div>
         </div>

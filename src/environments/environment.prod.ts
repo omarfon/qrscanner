@@ -9,3 +9,5 @@ export const environment = {
     appId: "1:621272075990:web:23fca6230f3ece9e290377"
   }
 };
+
+export const API_ENDPOINT = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/";

@@ -1,31 +1,41 @@
-<table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Fecha cita</th>
-      <th scope="col">Especialidad</th>
-      <th scope="col">Especialista</th>
-      <th scope="col">Consultorio</th>
-      <th scope="col">N° Documento</th>
-      <th scope="col">Actividad</th>
-      <th scope="col">Llegada</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let p of pacientes; index as i">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ p.data.nombreUsu }}</td>
-      <td>{{ p.data.dateCita | date:'short'}}</td>
-      <td>{{ p.data.especialidad  }}</td>
-      <td>{{ p.data.especialista  }}</td>
-      <td>{{ p.data.consultorio  }}</td>
-      <td>{{ p.data.patientId }}</td>
-      <td *ngIf="p.data.activity == false">PENDIENTE</td>
-      <td *ngIf="p.data.activity == true">LLEGÓ</td>
-      <td *ngIf="p.data.llegada == false">sin marcar</td>
-      <td *ngIf="p.data.llegada == true">marcado</td>
-      <td></td>
-    </tr>
-    </tbody>
+<div class="container-fluid">
+  <h3>Lista de llegada de pacientes</h3>
+  <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Fecha cita</th>
+        <th scope="col">Hora cita</th>
+        <th scope="col">Especialidad</th>
+        <th scope="col">Especialista</th>
+        <th scope="col">Consultorio</th>
+        <th scope="col">N° Documento</th>
+        <th scope="col">Actividad</th>
+        <th scope="col">Llegada</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let p of pacientes; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ p.data.nombreUsu }}</td>
+        <td>{{ p.data.dateCita | date:'short'}}</td>
+        <td>{{ p.data.hora |slice:0:5 }}</td>
+        <td>{{ p.data.especialidad  }}</td>
+        <td>{{ p.data.especialista  }}</td>
+        <td>{{ p.data.consultorio  }}</td>
+        <td>{{ p.data.document }}</td>
+        <td *ngIf="p.data.activity == false" >PENDIENTE</td>
+        <td *ngIf="p.data.activity == true">ATENDIDO</td>
+        <td *ngIf="p.data.llegada == false">
+          <button mat-button color="primary"  [matMenuTriggerFor]="menu">Menu</button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="marcAsist(p)">Dar llegada</button>
+            </mat-menu>
+        </td>
+        <td *ngIf="p.data.llegada == true">Marcado</td>
+        <td></td>
+      </tr>
+      </tbody>
   </table>
+</div>

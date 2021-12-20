@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PushNotificationService } from 'src/app/services/push-notification.service';
 import { SaveDataService } from 'src/app/services/save-data.service';
-
+import Swal from 'sweetalert2'
 
 interface Paciente {
   name: string;
@@ -42,4 +42,18 @@ export class AdmisionComponent implements OnInit {
     })
   }
 
+  marcAsist(p){
+    const id = p.id;
+    this.saveDataSrv.llegadaAdmision(id).then(data => {
+        console.log(data);
+        Swal.fire({
+          title: 'Exzcelente!',
+          text: 'Has dado llegada a este paciente',
+          icon: 'success',
+          confirmButtonText: 'Entiendo'
+        })
+    }, err =>{
+      alert(err)
+    })
+  }
 }

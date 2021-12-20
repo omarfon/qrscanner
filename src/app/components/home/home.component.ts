@@ -3,6 +3,7 @@ import {QrScannerComponent} from 'angular2-qrscanner';
 import { NotifierService } from 'angular-notifier';
 import { ValidateCodeService } from 'src/app/services/validate-code.service';
 import { SaveDataService } from 'src/app/services/save-data.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,11 +21,13 @@ export class HomeComponent implements OnInit {
   public appointmenetId;
   public visible = true;
   public resultSearch;
+  public error: boolean = false;
   readonly VAPID_PUBLIC_KEY = "BOc4NRBzHbOOUpD734C6p0supHQGoEPH-HsVV-keE1i3mISOhiGd2vvX0NLNvsMwH_vyJjQZnPT4D-wx7_-6WjA";
 
   constructor(public notifierService: NotifierService, 
     public validateService: ValidateCodeService,
-    public saveDataSrv: SaveDataService) { 
+    public saveDataSrv: SaveDataService,
+    public router: Router) { 
       this.notifier = notifierService;
     }
 
@@ -66,6 +69,10 @@ export class HomeComponent implements OnInit {
         if(this.data){
             this.validateCode();
         }
+    },err =>{
+      this.loader = false;
+      this.error = true;
+      this.refresh();
     });
   }
 
@@ -94,7 +101,9 @@ export class HomeComponent implements OnInit {
     let data = {
       nombreUsu:this.resultSearch.PATIENTFULLNAME,
       patientId: this.resultSearch.PATIENTID,
+      document: this.resultSearch.PATIENTDOCUMENTNUMBER,
       dateCita: this.resultSearch.FECHA,
+      hora: this.resultSearch.HORA,
       appointmentId:this.resultSearch.APPOINTMENTID,
       result: this.resultSearch.result,
       especialista:this.resultSearch.PROFESSIONALFULLNAME,
@@ -107,8 +116,15 @@ export class HomeComponent implements OnInit {
     console.log(data);
     this.saveDataSrv.saveData(data).then(resp =>{
       console.log(resp)
+      setTimeout(()=>{  
+        this.refresh();
+   }, 15000);
       return resp
     })
+  }
+
+  refresh(){
+    window.location.reload()
   }
 
 }

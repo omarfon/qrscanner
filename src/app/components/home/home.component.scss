@@ -2,18 +2,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20vh;
-    background: #00C1D4;
+    padding-top: 35vh;
+    background: #062F51;
+    z-index: 150;
     center{
         text-align: center;
     }
     label{
         margin-top: 30px;
-        color:red;
+        color:#fff;
     }
 }
 .toolbar{
-    background: #00C1D4!important;
+    background: #062F51!important;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,14 +25,14 @@
     }
 }
 .container-fluid{
-    background: #00C1D4;
+    background: #062F51;
     height: 100vh;
 }
 .containerLoader{
     padding:20%;
 }
 .content{
-    background: #00C1D4;
+    background: #062F51;
 }
 
 
@@ -60,7 +61,13 @@
   .toolbar img {
     margin: 0 16px;
   }
-
+.textoEntrada{
+    color:#fff;
+    text-align: center;
+    z-index: 100;
+    font-size:1.3em;
+    padding-top: 150px;
+}
   .card-container {
     display: flex;
     flex-wrap: wrap;
@@ -85,24 +92,37 @@
   }
 
   .terminal {
-    position: relative;
+    position: relative; 
     width: 80%;
-    max-width: 500px;
-    height: 480px;
+    max-width: 800px;
+    height: 700px;
     border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 10%;
+    margin-top: 5%;
     overflow: hidden;
-    margin-left: calc( 50% - 250px );
+    margin-left: calc( 50% - 400px );
   }
 .dataPaciente{
     color:#fff;
     text-align: center;
-    width: 80%;
-    margin-top:-400px!important;
+    width: 70%;
     font-size:2em;
-    margin-left:10%!important;
+    margin-left:15%!important;
     line-height: 2.2em;
 }
-
+.containerMessage{
+    margin-top:-280px;
+}
+.mat-progress-spinner circle, .mat-spinner circle {
+    stroke: #fff;
+    }
+.bold{
+  font-weight: 600;
+  text-align: left;
+}
+.big{
+  font-size:1.8em;
+}
+.left{
+  text-align: right;
+}
   

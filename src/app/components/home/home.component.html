@@ -1,61 +1,85 @@
 <div class="container-fluid">
+  <div class="row">
+    <div class="col-11">
+      <img class="logoAviva" src="assets/images/logo.svg">
+  </div>  
+  <div class="col-1">
+    <mat-icon (click)="goToHome()" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+  </div>
+</div>
   <!-- Toolbar -->
-  <div class="toolbar" role="banner">
+ <!--  <div class="toolbar" role="banner">
     <span>Bienvenido a Aviva</span>
-  </div>
+  </div> -->
   <p class="textoEntrada" *ngIf="visible == true">Pon frente a la pantalla el código QR que se generó en la reserva de tu cita</p>
-
-  <div class="content" role="main" *ngIf="visible == true">
-    <input type="hidden" #selection>
-    <div class="terminal" [ngSwitch]="selection.value">
-      <pre *ngSwitchDefault><div>
-                  <qr-scanner
-                    [debug]="false"
-                    [canvasWidth]="1080" 
-                    [canvasHeight]="720" 
-                    [stopAfterScan]="true"
-                    [updateTime]="500"> 
-                  </qr-scanner>
-        </div></pre>
-    </div>
-  </div>
-  <div class="containerLoader">
-    <div *ngIf="loader == true" class="center">
+  <div class="containerLoader" *ngIf="loader == true">
+    <div  class="center">
       <mat-spinner></mat-spinner>
       <label for="">Revisando información de cita</label>
     </div>
   </div>
-
+  <div class="row">
+    <div class="col">
+      <div class="content" role="main" *ngIf="visible == true">
+        <input type="hidden" #selection>
+        <div class="terminal" [ngSwitch]="selection.value">
+          <pre *ngSwitchDefault><div>
+                      <qr-scanner
+                        [debug]="false"
+                        [canvasWidth]="1080" 
+                        [canvasHeight]="720" 
+                        [stopAfterScan]="true"
+                        [updateTime]="500"> 
+                      </qr-scanner>
+            </div></pre>
+        </div>
+      </div>
+      <div class="">
+        
+      </div>
+    </div>
+    <div class="col">
+      <h2 class="indicaciones" *ngIf="resultSearch">Indicaciones</h2>
+      <div class="row">
+        
   <div class="containerMessage">
     <div *ngIf="visible == false" class="center">
       <div class="row">
         <div *ngIf="resultSearch.result == 'ok' &&  resultSearch.PRECONSULTA == true" class="dataPaciente">
           <div class="row">
-            <div class="col-4 left">Paciente:</div>
+            <h3 class="col-4 left">Paciente:</h3>
             <div class="col-8 bold">{{resultSearch.PATIENTFULLNAME}}</div>
-            <div class="col-4 left">Especialidad:</div>
+            <h3 class="col-4 left">Especialidad:</h3>
             <div class="col-8 bold">{{resultSearch.BASICSERVICEDESCRIPTION}}</div>
-            <div class="col-4 left">Especialista:</div>
+            <h3 class="col-4 left">Especialista:</h3>
             <div class="col-8 bold">{{resultSearch.PROFESSIONALFULLNAME}}</div>
-            <div class="col-4 left">Dirigete a: </div>
+            <h3 class="col-4 left">Dirigete a: </h3>
             <div class="col-8 bold" *ngIf="resultSearch.BLOCK == 'CURA'">Pre consulta en el 2do piso bloque cura</div>
             <div class="col-8 bold big" *ngIf="resultSearch.BLOCK == 'CUIDA'">Pre consulta en el 2do piso bloque cuida</div>
           </div>
         </div>
         <div *ngIf="resultSearch.result == 'ok' &&  resultSearch.PRECONSULTA == false" class="dataPaciente">
           <div class="row">
-            <div class="col-4 left">Paciente:</div>
+            <h3 class="col-4 left">Paciente:</h3>
             <div class="col-8 bold">{{resultSearch.PATIENTFULLNAME}}</div>
-            <div class="col-4 left">Especialidad:</div>
+            <h3 class="col-4 left">Especialidad:</h3>
             <div class="col-8 bold">{{resultSearch.BASICSERVICEDESCRIPTION}}</div>
-            <div class="col-4 left">Especialista:</div>
+            <h3 class="col-4 left">Especialista:</h3>
             <div class="col-8 bold">{{resultSearch.PROFESSIONALFULLNAME}}</div>
-            <div class="col-4 left">Dirigete a:</div>
-            <div class="col-8 bold big">{{resultSearch.ROOMNAME}}</div>
+            <h3 class="col-4 left">Dirigete a:</h3>
+<!--             TODO ESTE BLOQUE ES REEMPLAZADO TEMPORALMENTE. -->
+            <!-- <div class="col-8 bold big">{{resultSearch.ROOMNAME}}</div> -->
+            <!-- // LUEGO SE DESCOMENTARÁ -->
+            <div class="col-8 bold" *ngIf="resultSearch.BLOCK == 'CURA'">Pre consulta en el 2do piso bloque cura</div>
+            <div class="col-8 bold big" *ngIf="resultSearch.BLOCK == 'CUIDA'">Pre consulta en el 2do piso bloque cuida</div>
           </div>
         </div>
       </div>
-      <p *ngIf="resultSearch.result == 'error'">Por favor dirigete a admisión</p>
+      <p *ngIf="resultSearch.result == 'error'" class="error">Por favor dirigete a admisión</p>
     </div>
   </div>
+      </div>  
+    </div>
+  </div>
+
 </div>

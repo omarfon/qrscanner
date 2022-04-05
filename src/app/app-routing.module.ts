@@ -4,9 +4,11 @@ import { AdmisionComponent } from './components/admision/admision.component';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { StartComponent } from './start/start.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
+  {path:'start',component:StartComponent},
   {path:'home',component:HomeComponent},
   {path:'admision',component:AdmisionComponent},
   {path: '**', pathMatch: 'full', redirectTo: 'home' }

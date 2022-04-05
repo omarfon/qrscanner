@@ -32,7 +32,11 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    setTimeout(() => {
+        this.goToHome();
+    }, 1500);
   }
+  
   ngAfterViewInit(){
     this.qrScannerComponent.getMediaDevices().then(devices => {
       console.log(devices);
@@ -110,6 +114,8 @@ export class HomeComponent implements OnInit {
       especialidad:this.resultSearch.BASICSERVICEDESCRIPTION,
       bloque:this.resultSearch.BLOCK,
       consultorio:this.resultSearch.ROOMNAME,
+      data:this.resultSearch.DATOS,
+      incoming: new Date().toDateString(),
       activity: false,
       llegada: false
     }
@@ -125,6 +131,10 @@ export class HomeComponent implements OnInit {
 
   refresh(){
     window.location.reload()
+  }
+
+  goToHome(){
+    this.router.navigate(['start'])
   }
 
 }

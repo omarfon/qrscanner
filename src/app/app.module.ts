@@ -7,7 +7,7 @@ import { NgQrScannerModule } from 'angular2-qrscanner';
 import { AdmisionComponent } from './components/admision/admision.component';
 import { NotifierModule } from 'angular-notifier';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from '@angular/fire';
@@ -18,8 +18,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { PushNotificationService } from './services/push-notification.service';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SimpleNotificationsModule } from 'angular2-notifications';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon';
+import { StartComponent } from './start/start.component';
 
 
 @NgModule({
@@ -27,7 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     AdmisionComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    StartComponent
   ],
   imports: [
   BrowserModule,
@@ -36,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgQrScannerModule,
     NotifierModule,
     BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot(),
     MatProgressSpinnerModule,
     HttpClientModule,
     AngularFireModule,
@@ -43,7 +49,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFireMessagingModule,
     NgbModule,
     MatMenuModule,
+    MatTabsModule,
     FormsModule,
+    MatIconModule,
     ReactiveFormsModule
   ],
   providers: [PushNotificationService],

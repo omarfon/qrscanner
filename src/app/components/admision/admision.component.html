@@ -1,41 +1,110 @@
 <div class="container-fluid">
   <h3>Lista de llegada de pacientes</h3>
-  <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nombre</th>
-        <th scope="col">Fecha cita</th>
-        <th scope="col">Hora cita</th>
-        <th scope="col">Especialidad</th>
-        <th scope="col">Especialista</th>
-        <th scope="col">Consultorio</th>
-        <th scope="col">N° Documento</th>
-        <th scope="col">Actividad</th>
-        <th scope="col">Llegada</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let p of pacientes; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ p.data.nombreUsu }}</td>
-        <td>{{ p.data.dateCita | date:'short'}}</td>
-        <td>{{ p.data.hora |slice:0:5 }}</td>
-        <td>{{ p.data.especialidad  }}</td>
-        <td>{{ p.data.especialista  }}</td>
-        <td>{{ p.data.consultorio  }}</td>
-        <td>{{ p.data.document }}</td>
-        <td *ngIf="p.data.activity == false" >PENDIENTE</td>
-        <td *ngIf="p.data.activity == true">ATENDIDO</td>
-        <td *ngIf="p.data.llegada == false">
-          <button mat-button color="primary"  [matMenuTriggerFor]="menu">Menu</button>
-            <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="marcAsist(p)">Dar llegada</button>
-            </mat-menu>
-        </td>
-        <td *ngIf="p.data.llegada == true">Marcado</td>
-        <td></td>
-      </tr>
-      </tbody>
-  </table>
+  <mat-tab-group animationDuration="2000ms">
+    <mat-tab label="Pacientes Llegados">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Fecha cita</th>
+          <th scope="col">Hora cita</th>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Especialista</th>
+          <th scope="col">Consultorio</th>
+          <th scope="col">N° Documento</th>
+          <th scope="col">Datos</th>
+          <th scope="col">Actividad</th>
+          <th scope="col">Llegada</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of pacientes; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ p.data.nombreUsu }}</td>
+          <td>{{ p.data.dateCita | date:'dd-MM-YYYY'}}</td>
+          <td>{{ p.data.hora |slice:0:5 }}</td>
+          <td>{{ p.data.especialidad  }}</td>
+          <td>{{ p.data.especialista  }}</td>
+          <td>{{ p.data.consultorio  }}</td>
+          <td>{{ p.data.document }}</td>
+          <td *ngIf="p.data.data == 'Datos Incompletos'" class="rojo">{{ p.data.data }}</td>
+          <td *ngIf="p.data.data !== 'Datos Incompletos'">Datos completos</td>
+          <td *ngIf="p.data.activity == false" class="orange">PENDIENTE</td>
+          <td *ngIf="p.data.activity == true" class="verde">ATENDIDO</td>
+          <td *ngIf="p.data.llegada == false">
+            <button mat-button color="primary"  [matMenuTriggerFor]="menu">Menu</button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="marcAsist(p)">Dar llegada</button>
+              </mat-menu>
+          </td>
+          <td *ngIf="p.data.llegada == true" class="verde">Marcado</td>
+        </tr>
+        <simple-notifications></simple-notifications>
+        </tbody>
+    </table>
+    </mat-tab>
+    <mat-tab label="Pacientes Hoy">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Fecha cita</th>
+          <th scope="col">Hora cita</th>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Especialista</th>
+          <th scope="col">Consultorio</th>
+          <th scope="col">N° Documento</th>
+          <th scope="col">Datos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of pacientesHoy; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ p.PATIENTFULLNAME }}</td>
+          <td>{{ p.FECHA | date:'dd-MM-YYYY'}}</td>
+          <td>{{ p.HORA |slice:0:5 }}</td>
+          <td>{{ p.BASICSERVICEDESCRIPTION  }}</td>
+          <td>{{ p.PROFESSIONALFULLNAME  }}</td>
+          <td>{{ p.ROOMNAME  }}</td>
+          <td>{{ p.PATIENTDOCUMENTNUMBER }}</td>
+          <td *ngIf="p.DATOS == 'Datos Incompletos'" class="rojo">{{ p.DATOS }}</td>
+          <td></td>
+        </tr>
+        </tbody>
+    </table>
+    </mat-tab>
+    <mat-tab label="Todas las citas">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Fecha cita</th>
+          <th scope="col">Hora cita</th>
+          <th scope="col">Especialidad</th>
+          <th scope="col">Especialista</th>
+          <th scope="col">Consultorio</th>
+          <th scope="col">N° Documento</th>
+          <th scope="col">Datos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of respuesta; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ p.PATIENTFULLNAME }}</td>
+          <td>{{ p.FECHA | date:'dd-MM-YYYY'}}</td>
+          <td>{{ p.HORA |slice:0:5 }}</td>
+          <td>{{ p.BASICSERVICEDESCRIPTION  }}</td>
+          <td>{{ p.PROFESSIONALFULLNAME  }}</td>
+          <td>{{ p.ROOMNAME  }}</td>
+          <td>{{ p.PATIENTDOCUMENTNUMBER }}</td>
+          <td *ngIf="p.DATOS == 'Datos Incompletos'" class="rojo">{{ p.DATOS }}</td>
+          <td></td>
+        </tr>
+        </tbody>
+    </table>
+    </mat-tab>
+  </mat-tab-group>
 </div>

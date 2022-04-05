@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     padding-top: 35vh;
-    background: #062F51;
+   /*  background: #1572A1; */
     z-index: 150;
     center{
         text-align: center;
@@ -14,7 +14,7 @@
     }
 }
 .toolbar{
-    background: #062F51!important;
+    /* background: #1572A1!important; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,15 +25,21 @@
     }
 }
 .container-fluid{
-    background: #062F51;
+ /*    background: #1572A1; */
+ background-color: #20668b;
+ background-image: url(../../../assets/images/cita_fondo.jpg);
+ background-repeat: no-repeat;
+ background-size: contain;
+ background-position: top;
+ min-height: 100vh;
     height: 100vh;
 }
 .containerLoader{
     padding:20%;
 }
-.content{
-    background: #062F51;
-}
+/* .content{
+    background: #1572A1;
+} */
 
 
 :host {
@@ -65,8 +71,8 @@
     color:#fff;
     text-align: center;
     z-index: 100;
-    font-size:1.3em;
-    padding-top: 150px;
+    font-size:2.3em;
+    padding-top: 50px;
 }
   .card-container {
     display: flex;
@@ -93,7 +99,7 @@
 
   .terminal {
     position: relative; 
-    width: 80%;
+    width: 100%;
     max-width: 800px;
     height: 700px;
     border-radius: 6px;
@@ -109,20 +115,57 @@
     margin-left:15%!important;
     line-height: 2.2em;
 }
-.containerMessage{
+/* .containerMessage{
     margin-top:-280px;
-}
+} */
 .mat-progress-spinner circle, .mat-spinner circle {
     stroke: #fff;
     }
 .bold{
   font-weight: 600;
   text-align: left;
+  color:#fff;
+  font-size:30px;
+  line-height: 45px;
+  margin-bottom:15px;
 }
 .big{
   font-size:1.8em;
 }
 .left{
   text-align: right;
+  color:#EB954D;
+  font-size:35px;
+}
+.indicaciones{
+  color:#fff;
+  margin-top:150px!important;
+  font-weight: 600;
+  text-align: center;
+  font-size:2,2em;
+}
+video{
+  height: 800px;
+  width:600px;
+  margin-left:50px!important;
+}
+.logoAviva{
+  width:150px;
+  margin-top:30px;
+  margin-left: 30px;
+}
+mat-icon{
+  margin-top:30px;
+  text-align: right;
+  font-size:4em!important;
+  color:#fff;
+  cursor:pointer;
+}
+.error{
+  color:#fff;
+  text-align: center;
+  font-size:2.5em;
+  margin-left:50px;
+  margin-top:100px!important;
 }
   

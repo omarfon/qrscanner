@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
+import { API_ENDPOINT } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ValidateCodeService {
 
-  public url = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/ebooking/appointments/validate-payed/"
+  public url = API_ENDPOINT + 'ebooking/appointments/validate-payed/'
 
   constructor(public http: HttpClient) { }
 
@@ -17,6 +18,14 @@ export class ValidateCodeService {
       map(resp => {
         return resp
       })
+    );
+  }
+
+  getDatesPayed(){
+    return this.http.get(API_ENDPOINT + 'ebooking/appointments/getPayedAppointments').pipe(
+        map(resp => {
+          return resp
+        })
     );
   }
 

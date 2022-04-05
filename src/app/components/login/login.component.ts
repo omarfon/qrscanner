@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
 
   goToPatient(){
     localStorage.setItem('role', 'patient');
-      this.router.navigate(['home']);
+      this.router.navigate(['start']);
   }
 
 }

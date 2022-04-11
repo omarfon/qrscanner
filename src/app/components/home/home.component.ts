@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
         this.goToHome();
-    }, 1500);
+    }, 90000);
   }
   
   ngAfterViewInit(){
@@ -114,7 +114,7 @@ export class HomeComponent implements OnInit {
       especialidad:this.resultSearch.BASICSERVICEDESCRIPTION,
       bloque:this.resultSearch.BLOCK,
       consultorio:this.resultSearch.ROOMNAME,
-      data:this.resultSearch.DATOS,
+     /*  data:this.resultSearch.DATOS, */
       incoming: new Date().toDateString(),
       activity: false,
       llegada: false

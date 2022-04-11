@@ -33,18 +33,23 @@ export class LoginComponent implements OnInit {
   login() {
     let email = this.email;
     let password = this.password;
+    if(email ===  'admisionista' && password === 'Aviva1234'){
+      this.router.navigate(['/admision']);
+
+    }else{
+
+    }
     this.savedataSrv.login(email, password).subscribe(data => {
       this.dataLoginSuccess = data;
-      if (this.dataLoginSuccess) {
+/*       if (this.dataLoginSuccess) {
         localStorage.setItem('dataDoctor', JSON.stringify(this.dataLoginSuccess));
         localStorage.setItem('authorization', this.dataLoginSuccess.authorization);
         localStorage.setItem('role', data.role);
-        this.router.navigate(['/admision']);
-      }
+      } */
     }, err => {
       let data = err;
       console.log('data error:', data);
-      /* this.dialog.open(ErrologinComponent, { data }) */
+      /* this.dialog.open(ErrologinComponent, { data })  */
       console.log('err', err);
     });
   }

@@ -10,6 +10,6 @@ export const environment = {
   }
 };
 
-export const API_ENDPOINT = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/";
-/* export const API_ENDPOINT =  'https://api.aviva.pe/middleware2/api/v2/'; */
+/* export const API_ENDPOINT = "https://dappapache02.eastus.cloudapp.azure.com/middleware2/api/v2/"; */
+export const API_ENDPOINT =  'https://api.aviva.pe/middleware2/api/v2/';
 

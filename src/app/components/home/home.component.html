@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col-6">
       <div class="content" role="main" *ngIf="visible == true">
         <input type="hidden" #selection>
         <div class="terminal" [ngSwitch]="selection.value">
@@ -34,11 +34,11 @@
             </div></pre>
         </div>
       </div>
-      <div class="">
-        
+      <div class="col-6" *ngIf="visible == false">
+        <img src="assets/images/mobile.jpg" alt="" style="margin-left:50px; width:600px!important;margin-top:100px;">
       </div>
     </div>
-    <div class="col">
+    <div class="col-6">
       <h2 class="indicaciones" *ngIf="resultSearch">Indicaciones</h2>
       <div class="row">
         

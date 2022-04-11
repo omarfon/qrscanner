@@ -5,8 +5,8 @@
             <div class="row padding">
                 <div class="col-12 ">
                     <div class="form-control-group">
-                        <label for="">Ingresa tu Email</label>
-                        <input type="text" class="form-control" placeholder="Correo" name="email" [(ngModel)]="email">
+                        <label for="">Ingresa tu código de usuario</label>
+                        <input type="text" class="form-control" placeholder="Código usuario" name="email" [(ngModel)]="email">
                     </div>
                 </div>
                 <div class="col-12">
@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <button class="btn btn-primary btn-block" (click)="login()">LOGIN</button>
                 </div>
-                <div class="col-12">
+                <div class="col-12 paciente">
                     <a (click)="goToPatient()" class="paciente center">Ingresar como paciente</a>
                 </div>
             </div>

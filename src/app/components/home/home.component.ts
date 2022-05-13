@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
         this.goToHome();
-    }, 90000);
+    }, 45000);
   }
   
   ngAfterViewInit(){

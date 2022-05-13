@@ -1,6 +1,6 @@
 
 .fondo{
-    background-image: url(../../assets/home.jpg);
+    background-color:#28b5b5;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh!important;
@@ -93,21 +93,44 @@ mat-icon{
 }
 
 h2{
-    background: rgba(255, 255, 255, 0.7);
+/*     background: rgba(255, 255, 255, 0.7); */
     border-top-right-radius: 30px;
+    width:100%;
     padding:25px;
     font-size:3.5em;
     line-height: 1.2em;
     font-weight: 600;
-    margin-top:20vh;
-    color:#082F50;
-    margin-left:50px;
+    margin-top:15vh;
+    color:#fff;
+    text-align: center;
+    span{
+        font-size: 2em;
+        margin-bottom:15px;
+    }
 }
 .botonIniciar{
     height: 60px;
-    background: #082F50;
+    background: #E52729;
     margin-left:50px;
     margin-right: 50px;
     font-size: 2em;
     width:95%;
+}
+.containerImagenes{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.containerLogo{
+    text-align: right;
+}
+.logo{
+    width:220px;
+    margin-bottom: 50px;
+
+}
+.imagen{
+    width:400px;
+    height: auto;
 }
